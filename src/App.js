@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import ShowProfile from './components/ShowProfile'
 import EditProfile from './components/EditProfile'
 import ToggleProfileButton from './components/ToggleProfileButton'
-import RandomProfileButton  from './components/RandomProfileButton'
+import RandomProfileButton from './components/RandomProfileButton'
 
 const randomUser = require('./api/randomuser')
 
@@ -18,32 +18,31 @@ class App extends Component {
       display: true
     }
   }
-  
-  
+
   handleChangeFirstName(newFirstName) {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const user = prevState.user
       user.firstName = newFirstName
       return {
         // this.state.user will be updated
-         user: user
-       }
-     })
+        user: user
+      }
+    })
   }
 
   handleChangeLastName(newLastName) {
-     this.setState((prevState) => {
-       const user = prevState.user
-       user.lastName = newLastName
-       return {
-         // this.state.user will be updated
-         user: user
-       }
-     })
+    this.setState(prevState => {
+      const user = prevState.user
+      user.lastName = newLastName
+      return {
+        // this.state.user will be updated
+        user: user
+      }
+    })
   }
 
   handleChangeProfileImageURL(newProfileImageURL) {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const user = prevState.user
       user.profileImageURL = newProfileImageURL
       return {
@@ -51,9 +50,9 @@ class App extends Component {
       }
     })
   }
-  
+
   handleToggleButton(newDisplay) {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const button = prevState.button
       let display = button.display
       button.display = !display
@@ -64,13 +63,13 @@ class App extends Component {
   }
 
   handleRandomUserFirstName() {
-    randomUser.getRandomUser().then( res => {
+    randomUser.getRandomUser().then(res => {
       this.handleChangeFirstName(res.data.results[0].name.first)
       this.handleChangeLastName(res.data.results[0].name.last)
       this.handleChangeProfileImageURL(res.data.results[0].picture.large)
     })
   }
-  
+
   render() {
     const user = this.state.user
     const button = this.state.button
@@ -79,35 +78,30 @@ class App extends Component {
       return (
         <div className="App">
           <div>
-            <ShowProfile 
+            <ShowProfile
               firstName={user.firstName}
               lastName={user.lastName}
               profileImageURL={user.profileImageURL}
             />
             <br />
             <ToggleProfileButton
-              onToggleProfileButton={
-                (display) => {
-                  this.handleToggleButton(display)
-                }
-              }
+              onToggleProfileButton={display => {
+                this.handleToggleButton(display)
+              }}
             >
               Edit Profile
             </ToggleProfileButton>
             <RandomProfileButton
-              onRandomProfileButton={
-                () => {
-                  this.handleRandomUserFirstName()
-                }
-              }
+              onRandomProfileButton={() => {
+                this.handleRandomUserFirstName()
+              }}
             >
               Get Random User
             </RandomProfileButton>
           </div>
         </div>
       )
-    }
-    else {
+    } else {
       return (
         <div className="App">
           <div>
@@ -115,46 +109,36 @@ class App extends Component {
               firstName={user.firstName}
               lastName={user.lastName}
               profileImageURL={user.profileImageURL}
-              onEditFirstName={
-                (firstName) => {
-                  this.handleChangeFirstName(firstName)
-                }
-              }
-              onEditLastName={
-                (lastName) => {
-                  this.handleChangeFirstName(lastName)
-                }
-              }
-              onEditProfileImageURL={
-                (profileImageURL) => {
-                  this.handleChangeFirstName(profileImageURL)
-                }
-              }
+              onEditFirstName={firstName => {
+                this.handleChangeFirstName(firstName)
+              }}
+              onEditLastName={lastName => {
+                this.handleChangeFirstName(lastName)
+              }}
+              onEditProfileImageURL={profileImageURL => {
+                this.handleChangeFirstName(profileImageURL)
+              }}
             />
             <br />
             <ToggleProfileButton
-              onToggleProfileButton={
-                (display) => {
-                  this.handleToggleButton(display)
-                }
-              }
+              onToggleProfileButton={display => {
+                this.handleToggleButton(display)
+              }}
             >
               Show Profile
             </ToggleProfileButton>
             <RandomProfileButton
-              onRandomProfileButton={
-                () => {
-                  this.handleRandomUserFirstName()
-                }
-              }
+              onRandomProfileButton={() => {
+                this.handleRandomUserFirstName()
+              }}
             >
               Get Random User
             </RandomProfileButton>
           </div>
         </div>
-      );
+      )
     }
   }
 }
 
-export default App;
+export default App
