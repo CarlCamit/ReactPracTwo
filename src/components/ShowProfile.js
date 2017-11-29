@@ -7,7 +7,7 @@ function ShowProfile ({
 }) { 
     return ( 
         <div> 
-            <h1>LinkedIn Profile Editor</h1>
+            <h1>View Profile</h1>
             <img src={ profileImageURL } alt={ firstName + ' ' + lastName }/>
             <p>Name: { firstName } { lastName } </p>
         </div>
