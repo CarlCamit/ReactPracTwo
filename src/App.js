@@ -57,7 +57,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Profile 
+        <ShowProfile 
           firstName={user.firstName}
           lastName={user.lastName}
           profileImageURL={user.profileImageURL}
