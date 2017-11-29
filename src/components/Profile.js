@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Profile ({
+function ShowProfile ({
     firstName,
     lastName,
     profileImageURL
@@ -14,4 +14,4 @@ function Profile ({
     )
 }
 
-export default Profile
+export default ShowProfile

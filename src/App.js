@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Profile from './components/Profile'
+import ShowProfile from './components/ShowProfile'
 
 class App extends Component {
   state = {
