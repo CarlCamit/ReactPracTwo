@@ -25,6 +25,32 @@ class App extends Component {
      })
   }
 
+  handleChangeLastName = (event) => {
+     // Get the <input> (DOM element)
+     const input = event.target
+     // Get the current input text from the field
+     const newLastName = input.value
+     this.setState((prevState) => {
+       const user = prevState.user
+       user.lastName = newLastName
+       return {
+         // this.state.user will be updated
+         user: user
+       }
+     })
+  }
+
+  handleChangeProfileImageURL = (event) => {
+    const newProfileImageURL = event.target.value
+    this.setState((prevState) => {
+      const user = prevState.user
+      user.profileImageURL = newProfileImageURL
+      return {
+        user: user
+      }
+    })
+  }
+
   render() {
     const user = this.state.user
 
@@ -40,6 +66,26 @@ class App extends Component {
             value={ user.firstName } 
             onChange={
               this.handleChangeFirstName
+            }
+          />
+        </label><br />
+        
+        <label>
+          Last Name: { ' ' }
+          <input 
+            value={ user.lastName } 
+            onChange={
+              this.handleChangeLastName
+            }
+          />
+        </label><br />
+
+        <label>
+          Profile Image URL: { ' ' }
+          <input 
+            value={ user.profileImageURL } 
+            onChange={
+              this.handleChangeProfileImageURL
             }
           />
         </label>
