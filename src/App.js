@@ -3,6 +3,9 @@ import './App.css';
 import ShowProfile from './components/ShowProfile'
 import EditProfile from './components/EditProfile'
 import ToggleProfileButton from './components/ToggleProfileButton'
+import RandomProfileButton  from './components/RandomProfileButton'
+
+const randomUser = require('./api/randomuser')
 
 class App extends Component {
   state = {
@@ -15,13 +18,14 @@ class App extends Component {
       display: true
     }
   }
-
+  
+  
   handleChangeFirstName(newFirstName) {
-     this.setState((prevState) => {
-       const user = prevState.user
-       user.firstName = newFirstName
-       return {
-         // this.state.user will be updated
+    this.setState((prevState) => {
+      const user = prevState.user
+      user.firstName = newFirstName
+      return {
+        // this.state.user will be updated
          user: user
        }
      })
@@ -58,6 +62,14 @@ class App extends Component {
       }
     })
   }
+
+  handleRandomUserFirstName() {
+    randomUser.getRandomUser().then( res => {
+      this.handleChangeFirstName(res.data.results[0].name.first)
+      this.handleChangeLastName(res.data.results[0].name.last)
+      this.handleChangeProfileImageURL(res.data.results[0].picture.large)
+    })
+  }
   
   render() {
     const user = this.state.user
@@ -82,6 +94,15 @@ class App extends Component {
             >
               Edit Profile
             </ToggleProfileButton>
+            <RandomProfileButton
+              onRandomProfileButton={
+                () => {
+                  this.handleRandomUserFirstName()
+                }
+              }
+            >
+              Get Random User
+            </RandomProfileButton>
           </div>
         </div>
       )
@@ -120,6 +141,15 @@ class App extends Component {
             >
               Show Profile
             </ToggleProfileButton>
+            <RandomProfileButton
+              onRandomProfileButton={
+                () => {
+                  this.handleRandomUserFirstName()
+                }
+              }
+            >
+              Get Random User
+            </RandomProfileButton>
           </div>
         </div>
       );
