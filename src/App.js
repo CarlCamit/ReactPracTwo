@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Profile from './components/Profile'
 
 class App extends Component {
   state = {
@@ -56,9 +57,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>LinkedIn Profile Editor</h1>
-        <img src={ user.profileImageURL } alt={ user.firstName + ' ' + user.lastName }/>
-        <p>Name: { user.firstName } { user.lastName } </p>
+        <Profile 
+          firstName={user.firstName}
+          lastName={user.lastName}
+          profileImageURL={user.profileImageURL}
+        />
 
         <label>
           First Name: { ' ' }
@@ -69,7 +72,7 @@ class App extends Component {
             }
           />
         </label><br />
-        
+
         <label>
           Last Name: { ' ' }
           <input 
