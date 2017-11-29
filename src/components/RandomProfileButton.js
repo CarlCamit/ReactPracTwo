@@ -1,7 +1,6 @@
 import React from 'react'
 
 function RandomProfileButton({
-  // display,
   children,
   onRandomProfileButton
 }) {

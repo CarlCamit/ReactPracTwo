@@ -51,7 +51,7 @@ class App extends Component {
     })
   }
 
-  handleToggleButton(newDisplay) {
+  handleToggleButton() {
     this.setState(prevState => {
       const button = prevState.button
       let display = button.display
@@ -85,8 +85,8 @@ class App extends Component {
             />
             <br />
             <ToggleProfileButton
-              onToggleProfileButton={display => {
-                this.handleToggleButton(display)
+              onToggleProfileButton={() => {
+                this.handleToggleButton()
               }}
             >
               Edit Profile
@@ -121,8 +121,8 @@ class App extends Component {
             />
             <br />
             <ToggleProfileButton
-              onToggleProfileButton={display => {
-                this.handleToggleButton(display)
+              onToggleProfileButton={() => {
+                this.handleToggleButton()
               }}
             >
               Show Profile
