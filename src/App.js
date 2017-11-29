@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ShowProfile from './components/ShowProfile'
+import EditProfile from './components/EditProfile'
 
 class App extends Component {
   state = {
@@ -11,11 +12,7 @@ class App extends Component {
     }
   }
 
-  handleChangeFirstName = (event) => {
-     // Get the <input> (DOM element)
-     const input = event.target
-     // Get the current input text from the field
-     const newFirstName = input.value
+  handleChangeFirstName(newFirstName) {
      this.setState((prevState) => {
        const user = prevState.user
        user.firstName = newFirstName
@@ -26,11 +23,7 @@ class App extends Component {
      })
   }
 
-  handleChangeLastName = (event) => {
-     // Get the <input> (DOM element)
-     const input = event.target
-     // Get the current input text from the field
-     const newLastName = input.value
+  handleChangeLastName(newLastName) {
      this.setState((prevState) => {
        const user = prevState.user
        user.lastName = newLastName
@@ -41,8 +34,7 @@ class App extends Component {
      })
   }
 
-  handleChangeProfileImageURL = (event) => {
-    const newProfileImageURL = event.target.value
+  handleChangeProfileImageURL(newProfileImageURL) {
     this.setState((prevState) => {
       const user = prevState.user
       user.profileImageURL = newProfileImageURL
@@ -63,35 +55,26 @@ class App extends Component {
           profileImageURL={user.profileImageURL}
         />
 
-        <label>
-          First Name: { ' ' }
-          <input 
-            value={ user.firstName } 
-            onChange={
-              this.handleChangeFirstName
+        <EditProfile
+          firstName={user.firstName}
+          lastName={user.lastName}
+          profileImageURL={user.profileImageURL}
+          onEditFirstName={
+            (firstName) => {
+              this.handleChangeFirstName(firstName)
             }
-          />
-        </label><br />
-
-        <label>
-          Last Name: { ' ' }
-          <input 
-            value={ user.lastName } 
-            onChange={
-              this.handleChangeLastName
+          }
+          onEditLastName={
+            (lastName) => {
+              this.handleChangeFirstName(lastName)
             }
-          />
-        </label><br />
-
-        <label>
-          Profile Image URL: { ' ' }
-          <input 
-            value={ user.profileImageURL } 
-            onChange={
-              this.handleChangeProfileImageURL
+          }
+          onEditProfileImageURL={
+            (profileImageURL) => {
+              this.handleChangeFirstName(profileImageURL)
             }
-          />
-        </label>
+          }
+        />
       </div>
     );
   }
